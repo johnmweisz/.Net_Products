@@ -1,0 +1,25 @@
+﻿@model AddNewOrRef
+
+<div class="container">
+    <div class="left">
+        <form asp-action="NewCategory" asp-controller="Home" method="post">
+            <div class="form-group">
+                <label asp-for="Category.Name"></label>
+                <span asp-validation-for="Category.Name"></span>
+                <input class="form-control" asp-for="Category.Name">
+            </div>   
+            <button>Submit</button>
+        </form>
+    </div>
+    <div class="right">
+        @{
+            foreach(var Category in Model.Categories)
+            {
+                <div>
+                    <a href="categories/@Category.CategoryId">@Category.Name</a>
+                </div>
+            }
+        }
+    </div>
+</div>
+

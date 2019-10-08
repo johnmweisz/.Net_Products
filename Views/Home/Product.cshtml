@@ -1,0 +1,31 @@
+﻿@model AddNewOrRef
+<div class="container">
+    <div class="left">
+        @{
+            foreach(var prodcat in Model.Product.Categories)
+            {
+                <div>
+                    <p>@prodcat.Category.Name</p>
+                </div>
+            }
+        }
+    </div>
+    <div class="right">
+        <form asp-action="AddToProduct" asp-route-id="@Model.Product.ProductId" asp-controller="Home" method="post">
+            <div class="form-group">
+                <label asp-for="Relationship.CategoryId"></label>
+                <span asp-validation-for="Relationship.CategoryId"></span>
+                <select class="form-control" asp-for="Relationship.CategoryId">
+                    @{
+                        foreach(var Category in Model.Categories)
+                        {
+                            <option value="@Category.CategoryId">@Category.Name</option>
+                        }
+                    }
+                </select>
+            </div>   
+            <button>Submit</button>
+        </form>
+    </div>
+</div>
+
